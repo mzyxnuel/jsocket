@@ -5,7 +5,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
-import java.util.UUID;
 
 import model.Method;
 import model.Request;
@@ -16,7 +15,6 @@ public class ClientController extends Thread {
 	private ObjectInputStream input;
 	private ObjectOutputStream output;
 	private Response response;
-	private String clientID = generateClientID();
 	
 	public ClientController() {
         connectToServer();
@@ -65,13 +63,5 @@ public class ClientController extends Thread {
         try {
             output.writeObject(request);
         } catch (Exception e) { e.printStackTrace(); } 
-    }
-
-    private String generateClientID() {
-        return UUID.randomUUID().toString();
-	}
-
-    public String getClientID() {
-        return clientID;
     }
 }
